@@ -55,10 +55,6 @@ const fetcher = (token: string, variables: any) => {
                       history(first: 50,since: $since,until: $until,author:{id:$userId}) {
                         edges {
                           node {
-                            message
-                            author{
-                              email
-                            }
                             authoredDate
                           }
                         }
@@ -66,7 +62,6 @@ const fetcher = (token: string, variables: any) => {
                     }
                   }
                 }
-                name
               }
             }
           }
