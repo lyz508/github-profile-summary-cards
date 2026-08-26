@@ -1,4 +1,5 @@
 import request, {assertNoGraphQLErrors, isTooExpensive} from '../../src/utils/request';
+import * as core from '@actions/core';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
@@ -75,6 +76,16 @@ describe('isTooExpensive', () => {
 });
 
 describe('gateway-timeout classification', () => {
+    let warningSpy: jest.SpyInstance;
+
+    beforeEach(() => {
+        warningSpy = jest.spyOn(core, 'warning').mockImplementation(() => {});
+    });
+
+    afterEach(() => {
+        warningSpy.mockRestore();
+    });
+
     it.each([502, 504])(
         'flags an exhausted %i as isGatewayTimeout so callers narrow the query',
         async status => {
