@@ -10,7 +10,7 @@ module.exports = {
         }],
         '^.+\\.js$': 'babel-jest' // Ensure JS files in node_modules can be transformed
     },
-    setupFilesAfterEnv: [],
+    setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
     testMatch: ['**/*.test.ts'],
     verbose: true,
     collectCoverageFrom: ['**/*.{ts,tsx}', '!**/node_modules/**', '!**/dist/**', '!**/lib/**', '!scripts/**'],
